@@ -1,4 +1,4 @@
-<div @class(['mb-1', 'mt-5', 'd-flex', 'flex-row', 'align-middle'])>
+<div @class(['mb-1', 'mt-4', 'd-flex', 'flex-row', 'align-middle'])>
     <strong>{{ $group->getName() }}</strong>
     <em @class(['ms-4'])>{{ count($group->getTasks()) }} {{  Str::plural('tasks', $group->getTasks()) }}</em>
 </div>

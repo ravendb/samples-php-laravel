@@ -30,7 +30,7 @@ services:
         environment:
             - RAVEN_ARGS=--Setup.Mode=None --License.Eula.Accepted=True
         networks:
-            - sails
+            - sail
         ports:
             - '8080:8080'
             - '38888:38888'

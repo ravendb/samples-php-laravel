@@ -14,7 +14,7 @@
 
     <style type="text/css">
         .task-details:hover {
-            /*background-color: #fafafa;*/
+            background-color: #fafafa;
         }
         .task-details .task-actions {
             display: none !important;
