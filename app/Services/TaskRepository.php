@@ -98,11 +98,7 @@ class TaskRepository
             $rql .= 'order by list.priority asc ';
             $rql .= 'select {
                         priority: list.priority
-                        tasks: ';
-            $rql .= 'list.tasks';
-
-            $rql .= $this->tasksFilteringAndSortingRql($filter, $sortBy);
-
+                        tasks: list.tasks' . $this->tasksFilteringAndSortingFunctions($filter, $sortBy);
             $rql .= '}';
 
             $groups = $session->advanced()
@@ -124,7 +120,7 @@ class TaskRepository
         return $taskGroups;
     }
 
-    private function tasksFilteringAndSortingRql(TaskFilter $filter, TaskSortBy $sortBy): string
+    private function tasksFilteringAndSortingFunctions(TaskFilter $filter, TaskSortBy $sortBy): string
     {
         $rql = '';
 
@@ -140,6 +136,9 @@ class TaskRepository
             $rql .= '.sort((a, b) => a.sortField < b.sortField ? -1 : 1)'; // sort by due date asc
         } elseif ($sortBy->isDateAdded()) {
             $rql .= '.sort((a, b) => a.createdAt < b.createdAt ? -1 : 1)'; // sort by createdAt asc
+        } elseif ($sortBy->isDateCompleted()) {
+            $rql .= '.map(x => { x.sortField = x.completedAt === null ? \'5000-01-01\' : x.completedAt; return x;})'; // push the null dates to the end
+            $rql .= '.sort((a, b) => a.sortField > b.sortField ? -1 : 1)'; // sort by completedAt asc
         } elseif ($sortBy->isPriority()) {
             $rql .= '.sort((a, b) => a.priority < b.priority ? -1 : 1)'; // sort by createdAt asc
         }
@@ -163,7 +162,7 @@ class TaskRepository
                         tasks: ';
             $rql .= 'list.tasks';
 
-            $rql .= $this->tasksFilteringAndSortingRql($filter, $sortBy);
+            $rql .= $this->tasksFilteringAndSortingFunctions($filter, $sortBy);
 
             $rql .= '}';
 
@@ -206,7 +205,7 @@ class TaskRepository
                         tasks: ';
             $rql .= 'list.tasks';
 
-            $rql .= $this->tasksFilteringAndSortingRql($filter, $sortBy);
+            $rql .= $this->tasksFilteringAndSortingFunctions($filter, $sortBy);
 
             $rql .= '}';
 
@@ -249,7 +248,7 @@ class TaskRepository
                         tasks: ';
             $rql .= 'list.tasks';
 
-            $rql .= $this->tasksFilteringAndSortingRql($filter, $sortBy);
+            $rql .= $this->tasksFilteringAndSortingFunctions($filter, $sortBy);
 
             $rql .= '}';
 
