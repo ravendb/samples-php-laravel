@@ -2,7 +2,7 @@ RavenDB Laravel Demo Application
 ====================================
 
 The "RavenDB Laravel Demo Application" is a reference application created 
-to show how to develop Laravel applications using RavenDB database.
+to show how to develop Laravel applications using [RavenDB](https://ravendb.net/) database.
 
 
 ## Requirements
@@ -32,9 +32,7 @@ Create secret key for the application:
 ./vendor/bin/sail artisan key:generate
 ```
 
-## Setup database
-
-Go to RavenDB Studio: http://localhost:8080 and follow instructions for initial setup.
+## Seed the database
 
 Seed the database with command:
 
@@ -46,6 +44,8 @@ Seed the database with command:
 
 To access the app in your browser insert the link:
 
-http://localhost/
+Access the application in your browser at the given URL ([http://localhost/](http://localhost/) by default).
+
+---
 
 

@@ -27,8 +27,10 @@ services:
     raven-db:
         container_name: raven.db
         image: ravendb/ravendb:ubuntu-latest
+        environment:
+            - RAVEN_ARGS=--Setup.Mode=None --License.Eula.Accepted=True
         networks:
-            - sail
+            - sails
         ports:
             - '8080:8080'
             - '38888:38888'
