@@ -4,6 +4,7 @@ RavenDB Laravel Demo Application
 The "_RavenDB Laravel Demo Application_" is a reference application created 
 to show how to develop _Laravel_ applications using [RavenDB](https://ravendb.net/) database.
 
+![_RavenDB Laravel Demo Application_](doc/todo-manager.png)
 
 ## Requirements
 
