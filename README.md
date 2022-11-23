@@ -21,17 +21,13 @@ Before you begin, you should ensure that your local machine has PHP and [Compose
 composer create-project ravendb/samples-php-laravel demo-app
 ```
 
-Copy `.env.example` to `.env` file in project root folder.
+Make sure that docker is started and running. 
 
-Make sure that docker is started and running. Start application containers with: 
+Start application containers with: 
 ```
 ./vendor/bin/sail up
 ```
 
-Create secret key for the application:
-```bash
-./vendor/bin/sail artisan key:generate
-```
 
 ## Database seeding
 
