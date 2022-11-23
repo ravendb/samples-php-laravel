@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "ravendb/samples-php-laravel",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "RavenDB Laravel Demo Application.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
