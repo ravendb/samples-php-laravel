@@ -3,9 +3,11 @@
 namespace App\Services;
 
 use RavenDB\Documents\DocumentStore;
+use RavenDB\Http\GetDatabaseNamesResponse;
 use RavenDB\ServerWide\DatabaseRecord;
 use RavenDB\ServerWide\Operations\CreateDatabaseOperation;
 use RavenDB\ServerWide\Operations\DeleteDatabasesOperation;
+use RavenDB\ServerWide\Operations\GetDatabaseNamesOperation;
 
 class RavenDBManager
 {
@@ -56,4 +58,19 @@ class RavenDBManager
         $createDatabaseOperation = new CreateDatabaseOperation($databaseRecord);
         $store->maintenance()->server()->send($createDatabaseOperation);
     }
+
+    public function databaseExists(?string $database = null): bool
+    {
+        $store = $this->getStore($database);
+
+        $operation = new GetDatabaseNamesOperation(0, 100);
+
+        /** @var GetDatabaseNamesResponse $response */
+        $response = $store->maintenance()->server()->send($operation);
+
+        $databaseNames = $response->getDatabases();
+
+        return in_array($store->getDatabase(), $databaseNames);
+    }
+
 }

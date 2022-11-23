@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SeedController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TasksController;
 use Illuminate\Support\Facades\Route;
@@ -15,10 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/tasks');
-});
+Route::get('/', [HomeController::class, 'index'])
+    ->name('home');
 
+Route::get('/seed', [SeedController::class, 'seed'])
+    ->name('seed');
 
 Route::get('/tasks', [TasksController::class, 'list'])
     ->name('tasks');

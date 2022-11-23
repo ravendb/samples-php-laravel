@@ -5,21 +5,26 @@ namespace App\Http\Controllers;
 use App\Domain\Task\TaskFilter;
 use App\Domain\Task\TaskGroupBy;
 use App\Domain\Task\TaskSortBy;
+use App\Services\RavenDBManager;
 use App\Services\TaskRepository;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\View\View;
+
 class TasksController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    private RavenDBManager $manager;
     private TaskRepository $taskRepository;
 
-    public function __construct(TaskRepository $taskRepository)
+    public function __construct(RavenDBManager $manager, TaskRepository $taskRepository)
     {
+        $this->manager = $manager;
         $this->taskRepository = $taskRepository;
     }
 
@@ -28,10 +33,15 @@ class TasksController extends BaseController
      *
      * @param Request $request
      *
-     * @return View
+     * @return View|RedirectResponse
      */
-    public function list(Request $request): View
+    public function list(Request $request): View|RedirectResponse
     {
+        if ($this->shouldRedirect()) {
+            return redirect(route('home'));
+        }
+
+
         $filterString = $request->input('filter', null);
         $filter = empty($filterString) ? TaskFilter::default() : new TaskFilter($filterString);
 
@@ -68,5 +78,10 @@ class TasksController extends BaseController
             return $this->taskRepository->getTasksGroupByDateCompleted($filter, $sortBy);
         }
         return $this->taskRepository->getTasks($filter, $sortBy);
+    }
+
+    private function shouldRedirect(): bool
+    {
+        return !$this->manager->databaseExists();
     }
 }
