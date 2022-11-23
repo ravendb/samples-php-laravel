@@ -18,7 +18,7 @@ to show how to develop _Laravel_ applications using [RavenDB](https://ravendb.ne
 Before you begin, you should ensure that your local machine has PHP and [Composer](https://getcomposer.org/) installed.
 
 ```bash
-composer create-project ravendb/ravendb-laravel-app demo-app
+composer create-project ravendb/samples-php-laravel demo-app
 ```
 
 Copy `.env.example` to `.env` file in project root folder.
