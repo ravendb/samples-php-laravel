@@ -28,21 +28,13 @@ Start application containers with:
 ./vendor/bin/sail up
 ```
 
-
-## Database seeding
-
-To create database and seed the data run the command:
-
-```bash
-./vendor/bin/sail artisan ravendb:seed
-```
-
-Default database `Northwind` will be created. You can access it directly through 
-_RavenDB Studio_ on address: [http://localhost:8080](http://localhost:8080)   
-
 ## Access the application
 
 Access the application in your browser at the given URL [http://localhost/](http://localhost/).
+
+Note: 
+- On seeding command default database `Northwind` will be created.
+- You can access this database and its data directly through _RavenDB Studio_ on address: [http://localhost:8080](http://localhost:8080)
 
 ---
 
