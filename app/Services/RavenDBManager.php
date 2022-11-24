@@ -32,12 +32,12 @@ class RavenDBManager
 
     private function defaultUrl(): string
     {
-        return "http://raven.db:8080";
+        return env('RAVENDB_URL');
     }
 
     private function defaultDatabase(): string
     {
-        return "Northwind";
+        return env('RAVENDB_DATABASE_NAME');
     }
 
     public function removeDatabaseIfExists(?string $database = null)
