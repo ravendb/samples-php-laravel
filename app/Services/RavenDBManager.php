@@ -16,13 +16,13 @@ class RavenDBManager
 
     public function getStore(?string $database = null): DocumentStore
     {
-        $database = $database ?? $this->defaultDatabase();
+        $database = $database ?? $this->defaultDatabaseName();
 
         if (array_key_exists($database, $this->stores)) {
             return $this->stores[$database];
         }
 
-        $store = new DocumentStore([$this->defaultUrl()], $database);
+        $store = new DocumentStore([$this->databaseUrl()], $database);
         $store->initialize();
 
         $this->stores[$database] = $store;
@@ -30,12 +30,12 @@ class RavenDBManager
         return $store;
     }
 
-    private function defaultUrl(): string
+    private function databaseUrl(): string
     {
         return env('RAVENDB_URL');
     }
 
-    private function defaultDatabase(): string
+    private function defaultDatabaseName(): string
     {
         return env('RAVENDB_DATABASE_NAME');
     }
