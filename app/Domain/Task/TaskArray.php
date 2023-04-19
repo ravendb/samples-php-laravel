@@ -11,7 +11,7 @@ class TaskArray extends TypedArray
         parent::__construct(Task::class);
     }
 
-    public static function fromArray(array $data, $nullAllowed = false): TaskArray
+    public static function fromArray(array $data, bool $nullAllowed = false): static
     {
         $sa = new TaskArray();
 
