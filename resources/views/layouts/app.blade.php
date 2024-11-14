@@ -50,7 +50,7 @@
             <a class="navbar-brand p-0 m-0" href="{{ url('/')  }}">
             <div class="d-flex col gap-3">
                 <div class="mb-1">
-                <img src="{{url('/ravendb-logo.png')}}" alt="RavenDB" width="140">
+                <img src="{{url('/ravendb-logo.svg')}}" alt="RavenDB" width="140">
                 </div>
                 <span class="mt-auto">
                     Todo Manager
