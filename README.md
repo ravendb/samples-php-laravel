@@ -8,7 +8,7 @@ to show how to develop _Laravel_ applications using [RavenDB](https://ravendb.ne
 
 ## Requirements
 
-- PHP 8.1.0 or higher
+- PHP 8.2.0 or higher
 - DS PHP extension enabled
 - Docker
 - usual Laravel application requirements
